@@ -1,5 +1,14 @@
-/* Shared ashtonseth.dev compact utility header; manifest contract v1.0.0, Design Standard 2.9.2. */
+/* Shared ashtonseth.dev sticky utility header; manifest contract v1.0.0, Design Standard 2.10.0. */
+html {
+  --domain-header-height: calc(12rem + env(safe-area-inset-top));
+  scroll-padding-block-start: calc(var(--domain-header-height) + 12px);
+}
+/* Keep the first keyboard destination visible above the sticky component. */
+.skip-link { position: fixed; z-index: 20; }
 .domain-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 10;
   margin: 0;
   padding: 0;
   border-bottom: 1px solid var(--border);
@@ -33,7 +42,7 @@
   border: 0;
   background: transparent;
   box-shadow: none;
-  font-weight: 600;
+  font-weight: 400;
   text-decoration: none;
   overflow-wrap: anywhere;
 }
@@ -75,7 +84,6 @@
   text-underline-offset: 0.18em;
   text-decoration-thickness: 1px;
 }
-.domain-header__brand[aria-current="location"] { font-weight: 700; }
 .domain-header__theme { grid-area: theme; display: flex; justify-content: flex-end; }
 .domain-header__theme > button {
   position: static;
@@ -107,6 +115,7 @@
   outline-offset: 1px;
 }
 @media (min-width: 48rem) {
+  html { --domain-header-height: calc(6rem + env(safe-area-inset-top)); }
   .domain-header__inner {
     grid-template-columns: max-content minmax(0, 1fr) auto;
     grid-template-areas: "brand nav theme";
